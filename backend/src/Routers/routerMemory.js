@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("../controllers/itemControllers");
+const memoryControllers = require("../controllers/memoryControllers");
 
-router.get("/memory", itemControllers.browse);
-router.get("/memory/:id", itemControllers.read);
-router.put("/memory/:id", itemControllers.edit);
-router.post("/memory", itemControllers.add);
-router.delete("/memory/:id", itemControllers.destroy);
+router.get("/memory", memoryControllers.browse);
+router.get("/memory/:id", memoryControllers.read);
+router.put("/memory/:id", memoryControllers.edit);
+router.post("/memory", memoryControllers.add);
+router.delete("/memory/:id", memoryControllers.destroy);
 
 module.exports = router;

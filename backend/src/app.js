@@ -26,7 +26,7 @@ app.use(
 
 const router = require("./router");
 const routerUsers = require("./Routers/routerUser");
-const routerModels = require("./Routers/routerModels");
+const routerModels = require("./Routers/routerModel");
 const routerState = require("./Routers/routerState");
 const routerScreenSize = require("./Routers/routerScreenSize");
 const routerOs = require("./Routers/routerOs");
@@ -36,6 +36,7 @@ const routerColor = require("./Routers/routerColor");
 const routerCategory = require("./Routers/routerCategory");
 const routerBrand = require("./Routers/routerBrand");
 const routerStorage = require("./Routers/routerStorage");
+const routerPhone = require("./Routers/routerPhone");
 
 app.use(router);
 app.use(routerUsers);
@@ -49,6 +50,7 @@ app.use(routerColor);
 app.use(routerCategory);
 app.use(routerBrand);
 app.use(routerStorage);
+app.use(routerPhone);
 
 // serve the `backend/public` folder for public resources
 

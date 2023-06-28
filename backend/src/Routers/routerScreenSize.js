@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("../controllers/itemControllers");
+const screensizeControllers = require("../controllers/screenSizeControllers");
 
-router.get("/screensize", itemControllers.browse);
-router.get("/screensize/:id", itemControllers.read);
-router.put("/screensize/:id", itemControllers.edit);
-router.post("/screensize", itemControllers.add);
-router.delete("/screensize/:id", itemControllers.destroy);
+router.get("/screensize", screensizeControllers.browse);
+router.get("/screensize/:id", screensizeControllers.read);
+router.put("/screensize/:id", screensizeControllers.edit);
+router.post("/screensize", screensizeControllers.add);
+router.delete("/screensize/:id", screensizeControllers.destroy);
 
 module.exports = router;

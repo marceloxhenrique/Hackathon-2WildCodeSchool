@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* box-shadow: 0 0 0 3px red; */
+}
+
+.buttonRegister{
+  align-items: center;
+    background-color: #00ACB0;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    border: none;
+    margin-bottom: 5em;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
+}
+
+.buttonInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 8em;
+  align-items: center;
+  background-color:#00ACB0;
+  border-radius: 0.3em;
+  padding: 1em;
+  border: none;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
+}
+
+.buttonInputClicked {
+  background-color: #3fb636;
+
+}
+
+.buttonInput:hover {
+  background-color: #00d7db;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonInputMemory {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 8em;
+  align-items: center;
+  background-color: #00ACB0;
+  border-radius: 0.3em;
+  padding: 1em;
+  border: none;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
+  height: 4em;
+}
+
+.buttonInputMemory:hover {
+  background-color: #00d7db;
+}
+
+.buttonInputState{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 8em;
+  align-items: center;
+  background-color: #00ACB0;
+  border-radius: 0.3em;
+  padding: 1em;
+  border: none;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
+  height: 2em;
+}
+
+.buttonInputState:hover {
+  background-color: #00d7db;
+}
+
+
+.validateResetButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 8em;
+  align-items: center;
+  background-color: #00ACB0;
+  border-radius: 0.3em;
+  padding: 1em;
+  border: none;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
+  height: 3em;
+}
+
+.validateResetButton:hover {
+  background-color: #00d7db;
+}

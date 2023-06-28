@@ -9,6 +9,9 @@ import Admin from "./pages/Admin";
 import FAQ from "./pages/FAQ";
 import UserProfile from "./pages/UserProfile";
 import InfosTech from "./pages/InfosTech";
+import ChooseAction from "./components/Admin/ChooseAction";
+import CreateUser from "./components/Admin/CreateUser";
+import DeleteUser from "./components/Admin/DeleteUser";
 
 function App() {
   const theme = createTheme({
@@ -35,7 +38,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/evaluation" element={<Evaluation />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Admin />}>
+            <Route index element={<ChooseAction />} />
+            <Route path="create-user" element={<CreateUser />} />
+            <Route path="delete-user" element={<DeleteUser />} />
+          </Route>
           <Route path="/faq" element={<FAQ />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/infos-tech" element={<InfosTech />} />

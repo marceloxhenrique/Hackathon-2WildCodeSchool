@@ -22,16 +22,16 @@ class OsManager extends AbstractManager {
   }
 
   insert(os) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      os.title,
+    return this.database.query(`insert into ${this.table} (os) values (?)`, [
+      os.os,
     ]);
   }
 
   update(os) {
-    return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [os.title, os.id]
-    );
+    return this.database.query(`update ${this.table} set os = ? where id = ?`, [
+      os.os,
+      os.id,
+    ]);
   }
 }
 

@@ -22,15 +22,16 @@ class MemoryManager extends AbstractManager {
   }
 
   insert(memory) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      memory.title,
-    ]);
+    return this.database.query(
+      `insert into ${this.table} (memory) values (?)`,
+      [memory.memory]
+    );
   }
 
   update(memory) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [memory.title, memory.id]
+      `update ${this.table} set memory = ? where id = ?`,
+      [memory.memory, memory.id]
     );
   }
 }

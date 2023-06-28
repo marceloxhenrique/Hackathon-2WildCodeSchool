@@ -22,15 +22,16 @@ class ScreensizeManager extends AbstractManager {
   }
 
   insert(screensize) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      screensize.title,
-    ]);
+    return this.database.query(
+      `insert into ${this.table} (screen_size) values (?)`,
+      [screensize.screen_size]
+    );
   }
 
   update(screensize) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [screensize.title, screensize.id]
+      `update ${this.table} set screen_size = ? where id = ?`,
+      [screensize.screen_size, screensize.id]
     );
   }
 }

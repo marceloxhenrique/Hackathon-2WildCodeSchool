@@ -22,15 +22,15 @@ class BrandManager extends AbstractManager {
   }
 
   insert(brand) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      brand.title,
+    return this.database.query(`insert into ${this.table} (brand) values (?)`, [
+      brand.brand,
     ]);
   }
 
   update(brand) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [brand.title, brand.id]
+      `update ${this.table} set brand = ? where id = ?`,
+      [brand.brand, brand.id]
     );
   }
 }

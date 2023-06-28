@@ -4,10 +4,10 @@ const router = express.Router();
 
 const stateControllers = require("../controllers/stateControllers");
 
-router.get("/state", stateControllers.browse);
-router.get("/state/:id", stateControllers.read);
-router.put("/state/:id", stateControllers.edit);
-router.post("/state", stateControllers.add);
-router.delete("/state/:id", stateControllers.destroy);
+router.get("/states", stateControllers.browse);
+router.get("/states/:id", stateControllers.read);
+router.put("/states/:id", stateControllers.edit);
+router.post("/states", stateControllers.add);
+router.delete("/states/:id", stateControllers.destroy);
 
 module.exports = router;

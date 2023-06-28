@@ -22,15 +22,15 @@ class ModelManager extends AbstractManager {
   }
 
   insert(model) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      model.title,
+    return this.database.query(`insert into ${this.table} (model) values (?)`, [
+      model.model,
     ]);
   }
 
   update(model) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [model.title, model.id]
+      `update ${this.table} set model = ? where id = ?`,
+      [model.model, model.id]
     );
   }
 }

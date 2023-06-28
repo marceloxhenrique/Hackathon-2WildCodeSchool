@@ -22,15 +22,15 @@ class ColorManager extends AbstractManager {
   }
 
   insert(color) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      color.title,
+    return this.database.query(`insert into ${this.table} (color) values (?)`, [
+      color.color,
     ]);
   }
 
   update(color) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [color.title, color.id]
+      `update ${this.table} set color = ? where id = ?`,
+      [color.color, color.id]
     );
   }
 }

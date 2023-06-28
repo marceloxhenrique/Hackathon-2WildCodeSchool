@@ -22,15 +22,16 @@ class CategoryManager extends AbstractManager {
   }
 
   insert(category) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      category.title,
-    ]);
+    return this.database.query(
+      `insert into ${this.table} (category) values (?)`,
+      [category.category]
+    );
   }
 
   update(category) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [category.title, category.id]
+      `update ${this.table} set category = ? where id = ?`,
+      [category.category, category.id]
     );
   }
 }

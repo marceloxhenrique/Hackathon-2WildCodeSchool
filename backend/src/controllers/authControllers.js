@@ -1,17 +1,17 @@
 const models = require("../models");
 
-const getCandidateByEmailMiddleWare = (req, res, next) => {
-  // We just wanna check if candidate exist with this mail
+const getUserByEmailMiddleWare = (req, res, next) => {
+  // We just wanna check if user exist with this mail
   const { email } = req.body;
-  models.candidate
+  models.user
     .findByEmailWithPassword(email)
-    .then(([candidates]) => {
-      if (candidates[0]) {
-        // if candidate exist, push it to req.candidate so we can access like req.candidate.id, req.candidate.firstname, etc
-        [req.candidate] = candidates;
+    .then(([users]) => {
+      if (users[0]) {
+        // if user exist, push it to req.user so we can access like req.user.id, req.user.firstname, etc
+        [req.user] = users;
         next();
       } else {
-        // If candidate with this mail doesnt exist
+        // If user with this mail doesnt exist
         console.warn("Mail doesnt exist");
         res.sendStatus(401);
       }
@@ -23,5 +23,5 @@ const getCandidateByEmailMiddleWare = (req, res, next) => {
 };
 
 module.exports = {
-  getCandidateByEmailMiddleWare,
+  getUserByEmailMiddleWare,
 };

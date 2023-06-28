@@ -22,15 +22,15 @@ class StateManager extends AbstractManager {
   }
 
   insert(state) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      state.title,
+    return this.database.query(`insert into ${this.table} (state) values (?)`, [
+      state.state,
     ]);
   }
 
   update(state) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [state.title, state.id]
+      `update ${this.table} set state = ? where id = ?`,
+      [state.state, state.id]
     );
   }
 }

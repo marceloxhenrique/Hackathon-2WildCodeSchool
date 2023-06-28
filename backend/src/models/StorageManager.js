@@ -22,15 +22,16 @@ class StorageManager extends AbstractManager {
   }
 
   insert(storage) {
-    return this.database.query(`insert into ${this.table} (title) values (?)`, [
-      storage.title,
-    ]);
+    return this.database.query(
+      `insert into ${this.table} (storage) values (?)`,
+      [storage.storage]
+    );
   }
 
   update(storage) {
     return this.database.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [storage.title, storage.id]
+      `update ${this.table} set storage = ? where id = ?`,
+      [storage.storage, storage.id]
     );
   }
 }

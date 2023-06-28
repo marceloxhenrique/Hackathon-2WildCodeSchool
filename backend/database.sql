@@ -1,4 +1,3 @@
-
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS user, phone, os, brand, model , color, memory, storage, state, category, network, screen_size;
 
@@ -153,6 +152,6 @@ INSERT INTO screen_size (size)
 VALUES ('6');
 
 INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
-VALUES (1, 1, 1, 1, 1, 1,  1, 1, true, 1, 1  );
+VALUES (1, 1, 1, 1, 1, 1,  1, 1, true, 1, 1 );
 
 SET foreign_key_checks = 1;

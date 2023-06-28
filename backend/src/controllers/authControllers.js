@@ -22,6 +22,24 @@ const getUserByEmailMiddleWare = (req, res, next) => {
     });
 };
 
+const register = (req, res) => {
+  const user = req.body;
+  // TODO : on verifie les données avec joi ou autres modules
+  models.user
+    .insert(user)
+    .then(([result]) => {
+      console.warn("Result from register request", result);
+      if (result.affectedRows) res.sendStatus(201);
+      else res.sendStatus(400);
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.errno === 1062) res.sendStatus(409);
+      else res.sendStatus(500);
+    });
+};
+
 module.exports = {
   getUserByEmailMiddleWare,
+  register,
 };

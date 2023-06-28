@@ -1,5 +1,22 @@
 const models = require("../models");
 
+const profile = (req, res) => {
+  const id = req.payloads.sub;
+  models.user
+    .find(id)
+    .then(([users]) => {
+      if (users[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(users[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const browse = (req, res) => {
   models.user
     .findAll()
@@ -88,4 +105,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  profile,
 };

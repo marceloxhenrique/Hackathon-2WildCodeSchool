@@ -12,6 +12,12 @@ function NavAdmin() {
   const handleLinkDelete = () => {
     navigate("delete-user");
   };
+  const handleLinkUsers = () => {
+    navigate("users-list");
+  };
+  const handleLinkPhones = () => {
+    navigate("phones-list");
+  };
 
   return (
     <Stack
@@ -22,11 +28,17 @@ function NavAdmin() {
       divider={<Divider orientation="vertical" flexItem />}
       sx={{ p: 4 }}
     >
+      <Button size="large" variant="text" onClick={handleLinkUsers}>
+        Liste des Utilisateurs
+      </Button>
       <Button size="large" variant="text" onClick={handleLinkCreate}>
         Ajouter un Nouvel Utilisateur
       </Button>
       <Button size="large" variant="text" onClick={handleLinkDelete}>
         Supprimer un Utilisateur
+      </Button>
+      <Button size="large" variant="text" onClick={handleLinkPhones}>
+        Liste des Téléphones
       </Button>
     </Stack>
   );

@@ -12,6 +12,8 @@ import InfosTech from "./pages/InfosTech";
 import ChooseAction from "./components/Admin/ChooseAction";
 import CreateUser from "./components/Admin/CreateUser";
 import DeleteUser from "./components/Admin/DeleteUser";
+import UsersTable from "./components/Admin/UsersTable";
+import PhonesTable from "./components/Admin/PhonesTable";
 
 function App() {
   const theme = createTheme({
@@ -42,6 +44,8 @@ function App() {
             <Route index element={<ChooseAction />} />
             <Route path="create-user" element={<CreateUser />} />
             <Route path="delete-user" element={<DeleteUser />} />
+            <Route path="users-list" element={<UsersTable />} />
+            <Route path="phones-list" element={<PhonesTable />} />
           </Route>
           <Route path="/faq" element={<FAQ />} />
           <Route path="/profile" element={<UserProfile />} />

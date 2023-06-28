@@ -1,36 +1,37 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import { useNavigate } from "react-router-dom";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Navbar from "../components/Navbar";
+import logo from "../assets/logoEmmausConnect.svg";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleLinkEval = () => {
+    navigate("/evaluation");
+  };
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Navbar />
+      <Container maxWidth="lg">
+        <img src={logo} alt="logo" width="60%" />
+        <Typography variant="h3" color="primary" sx={{ mt: 4 }}>
+          Bienvenue chez SMART COMPAGNON
+        </Typography>
+        <Typography variant="h5" color="secondary">
+          Le compagnon EMMAÜS qui vous accompagne dans l'évaluation des
+          Téléphones
+        </Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 4, borderRadius: 5, p: 1.5, color: "white" }}
+          onClick={handleLinkEval}
         >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+          Evaluer un Nouveau Téléphone
+        </Button>
+      </Container>
+    </>
   );
 }

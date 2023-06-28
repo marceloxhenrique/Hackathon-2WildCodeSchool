@@ -2,8 +2,6 @@
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS user, phone, os, brand, model , color, memory, storage, state, category, network, screen_size;
 
-USE db_hackathon2;
-
 CREATE TABLE user (
   id INT NOT NULL AUTO_INCREMENT,
   fullname VARCHAR(100) NOT NULL,
@@ -152,7 +150,7 @@ INSERT INTO network (network)
 VALUES ('4G');
 
 INSERT INTO screen_size (size)
-VALUES ('6"');
+VALUES ('6');
 
 INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
 VALUES (1, 1, 1, 1, 1, 1,  1, 1, true, 1, 1  );

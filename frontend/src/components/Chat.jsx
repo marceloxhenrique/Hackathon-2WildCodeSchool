@@ -118,7 +118,7 @@ function Chat() {
       <Box sx={{ flex: 1, overflow: "auto", padding: "1rem" }}>
         {isTyping && (
           <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
-            <CircularProgress />
+            <CircularProgress color="secondary" />
           </Box>
         )}
         {messages.map((message) => (

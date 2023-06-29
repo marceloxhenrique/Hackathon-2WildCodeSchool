@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Home from "./pages/Home";
 import "./App.css";
 import Login from "./pages/Login";
-import Evaluation from "./pages/Evaluation";
+import Evaluation from "./pages/Evaluation/Evaluation";
 import Admin from "./pages/Admin";
 import FAQ from "./pages/FAQ";
 import UserProfile from "./pages/UserProfile";

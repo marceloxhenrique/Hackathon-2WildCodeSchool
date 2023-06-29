@@ -40,7 +40,7 @@ export default function UserProfile() {
               position: { lg: "fixed" },
             }}
           >
-            <UserCard />
+            <UserCard user={user} />
           </Grid>
         </Box>
         <Grid container spacing={4} justifyContent="flex-end">

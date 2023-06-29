@@ -18,9 +18,6 @@ function NavAdmin() {
   const handleLinkPhones = () => {
     navigate("phones-list");
   };
-  const handleLinkSpecs = () => {
-    navigate("phones-specs");
-  };
 
   return (
     <Stack
@@ -42,9 +39,6 @@ function NavAdmin() {
       </Button>
       <Button size="large" variant="text" onClick={handleLinkPhones}>
         Liste des Téléphones
-      </Button>
-      <Button size="large" variant="text" onClick={handleLinkSpecs}>
-        Caractéristiques
       </Button>
     </Stack>
   );

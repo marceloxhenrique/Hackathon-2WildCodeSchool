@@ -14,12 +14,12 @@ export default function CreateUser() {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const notifyCreation = () => toast.success("Nouvel Utilisateur Enregistré!");
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    fullname: "",
     email: "",
     password: "",
     phone: "",
     city: "",
+
     terms: false,
   });
 
@@ -37,7 +37,7 @@ export default function CreateUser() {
 
     if (validateForm()) {
       axios
-        .post(`${BACKEND_URL}/users`, { ...formData })
+        .post(`${BACKEND_URL}/register`, { ...formData })
         .then(() => {
           // Clear the form data after successful submission
           setFormData({
@@ -46,8 +46,8 @@ export default function CreateUser() {
             password: "",
             phone: "",
             city: "",
-            admin: "",
-            terms: false,
+
+            terms: true,
           });
           notifyCreation();
         })
@@ -103,7 +103,7 @@ export default function CreateUser() {
                   name="city"
                   required
                   fullWidth
-                  id="candidate-city"
+                  id="user-city"
                   label="City"
                   autoFocus
                   onChange={handleInputChange}
@@ -113,7 +113,7 @@ export default function CreateUser() {
                 <TextField
                   required
                   fullWidth
-                  id="candidate-phone"
+                  id="user-phone"
                   label="Phone Number"
                   name="phone"
                   autoComplete="phone"
@@ -127,7 +127,7 @@ export default function CreateUser() {
                   name="password"
                   label="Password"
                   type="password"
-                  id="candidate-password"
+                  id="user-password"
                   autoComplete="password"
                   onChange={handleInputChange}
                 />

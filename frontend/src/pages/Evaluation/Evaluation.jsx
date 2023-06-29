@@ -29,7 +29,7 @@ export default function Evaluation() {
     model: "",
     color: "",
     memory: "",
-    ram: "",
+    storage: "",
     state: "",
     charger: "Oui",
   });
@@ -117,27 +117,29 @@ export default function Evaluation() {
     let valS = "";
 
     // valeur en fonction du de l'indice
-    if (phoneData.operatyngSystem === "Android") {
+    if (phoneData.state === "Fair") {
       valA = 40;
-    } else if (phoneData.operatyngSystem === "iOS") {
+    } else if (phoneData.state === "Good") {
       valA = 44;
+    } else if (phoneData.state === "Excellent") {
+      valA = 49;
     }
 
     // valeur en fonction de  la mémoire
-    if (phoneData.ram === 4) {
+    if (phoneData.ram === "4GB") {
       valM = 30;
-    } else if (phoneData.ram === 6) {
+    } else if (phoneData.ram === "6GB") {
       valM = 40;
-    } else if (phoneData.ram === 8) {
+    } else if (phoneData.ram === "8GB") {
       valM = 54;
     }
 
     // valeur en fonction du stockage
-    if (phoneData.memory === "64 Go") {
+    if (phoneData.storage === "64GB") {
       valS = 31;
-    } else if (phoneData.memory === "128 Go") {
+    } else if (phoneData.storage === "128GB") {
       valS = 45;
-    } else if (phoneData.memory === "256 Go") {
+    } else if (phoneData.storage === "256GB") {
       valS = 66;
     }
     // console.log(valA)

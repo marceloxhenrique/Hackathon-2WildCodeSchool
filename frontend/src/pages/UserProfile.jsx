@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 import Navbar from "../components/Navbar";
 import WorkCard from "../components/User/WorkCard";
 import UserCard from "../components/User/UserCard";
@@ -18,6 +20,33 @@ export default function UserProfile() {
       navigate("/login");
     }
   }, []);
+
+  const [phones, setPhones] = useState([]);
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+  const config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `${BACKEND_URL}/user-phones/${user.id}`,
+    headers: {},
+  };
+
+  const getPhones = () => {
+    axios
+      .request(config)
+      .then((response) => {
+        setPhones(response.data);
+        console.warn(phones);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    getPhones();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -50,7 +79,7 @@ export default function UserProfile() {
               color="initial"
               sx={{
                 p: 2,
-                backgroundColor: "primary.main",
+                backgroundColor: "secondary.main",
                 color: "white",
                 borderRadius: 2,
               }}
@@ -58,24 +87,13 @@ export default function UserProfile() {
               Mes smartphones enregistrés
             </Typography>
             <Paper sx={{ height: "100%" }}>
-              <WorkCard />
+              {phones.map((phone) => (
+                <>
+                  <WorkCard key={phone.model} phone={phone} />
+                  <Divider key={phone.id} />
+                </>
+              ))}
             </Paper>
-          </Grid>
-        </Grid>
-        <Grid container spacing={4} justifyContent="flex-end" sx={{ my: 2 }}>
-          <Grid item xs={12} lg={7.5} elevation={3}>
-            <Typography
-              variant="h6"
-              color="initial"
-              sx={{
-                p: 2,
-                backgroundColor: "primary.main",
-                color: "white",
-                borderRadius: 2,
-              }}
-            >
-              Mes succès
-            </Typography>
           </Grid>
         </Grid>
       </Container>

@@ -4,6 +4,7 @@ const routerPhone = express.Router();
 const phoneControllers = require("../controllers/phoneControllers");
 
 routerPhone.get("/phones", phoneControllers.browse);
+routerPhone.get("/user-phones/:id", phoneControllers.browseById);
 routerPhone.get("/phones/:id", phoneControllers.read);
 routerPhone.put("/phones/:id", phoneControllers.edit);
 routerPhone.post("/phones", phoneControllers.add);

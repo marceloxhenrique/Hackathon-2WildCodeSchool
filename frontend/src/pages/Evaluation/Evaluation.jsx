@@ -88,10 +88,6 @@ export default function Evaluation() {
     setValidatePhone(true);
   };
 
-  const handlePhoneData = (e) => {
-    setPhoneData({ ...phoneData, [e.target.name]: e.target.value });
-  };
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -148,6 +144,31 @@ export default function Evaluation() {
     setPrice(calculatedPrice);
   };
 
+  const phoneDatapost = {
+    os_id: phoneData.operatyngSystem_id,
+    brand_id: phoneData.brand_id,
+    model_id: phoneData.model_id,
+    color_id: phoneData.color_id,
+    memory_id: phoneData.ram_id,
+    storage_id: phoneData.memory_id,
+    state_id: phoneData.state_id,
+    category_id: 1,
+    charger: phoneData.charger_id,
+    network_id: 1,
+    screen_size_id: 1,
+  };
+
+  const registerPhone = () => {
+    api
+      .registerPhone(phoneDatapost)
+      .then((response) => {
+        console.warn("Phone registration successful:", response);
+      })
+      .catch((error) => {
+        console.error("Phone registration failed:", error);
+      });
+  };
+
   return (
     <>
       <Navbar />
@@ -188,21 +209,33 @@ export default function Evaluation() {
                   <StepContent>
                     <div className={styles.container}>
                       <button
-                        onClick={handlePhoneData}
                         type="button"
                         className={styles.buttonInput}
                         name="operatyngSystem"
                         value="Android"
+                        onClick={(e) => {
+                          setPhoneData({
+                            ...phoneData,
+                            [e.target.name]: e.target.value,
+                            operatyngSystem_id: 1,
+                          });
+                        }}
                       >
                         Android
                         <img src={android} alt="Android icon" />
                       </button>
                       <button
-                        onClick={handlePhoneData}
                         type="button"
                         className={styles.buttonInput}
                         name="operatyngSystem"
                         value="iOS"
+                        onClick={(e) => {
+                          setPhoneData({
+                            ...phoneData,
+                            [e.target.name]: e.target.value,
+                            operatyngSystem_id: 2,
+                          });
+                        }}
                       >
                         iOS
                         <img src={apple} alt="apple icon" />
@@ -252,6 +285,7 @@ export default function Evaluation() {
                               setPhoneData({
                                 ...phoneData,
                                 brand: option.brand,
+                                brand_id: option.id,
                               });
                             }}
                             name="brand"
@@ -302,6 +336,7 @@ export default function Evaluation() {
                               setPhoneData({
                                 ...phoneData,
                                 model: option.model,
+                                model_id: option.id,
                               });
                             }}
                             name="brand"
@@ -351,6 +386,7 @@ export default function Evaluation() {
                               setPhoneData({
                                 ...phoneData,
                                 color: option.color,
+                                color_id: option.id,
                               });
                             }}
                             name="brand"
@@ -394,7 +430,13 @@ export default function Evaluation() {
                           name="memory"
                           value={option.storage}
                           className={styles.buttonInputMemory}
-                          onClick={handlePhoneData}
+                          onClick={(e) => {
+                            setPhoneData({
+                              ...phoneData,
+                              [e.target.name]: e.target.value,
+                              memory_id: option.id,
+                            });
+                          }}
                         >
                           {option.storage}
                         </button>
@@ -434,7 +476,13 @@ export default function Evaluation() {
                           name="ram"
                           value={option.memory}
                           className={styles.buttonInputMemory}
-                          onClick={handlePhoneData}
+                          onClick={(e) => {
+                            setPhoneData({
+                              ...phoneData,
+                              [e.target.name]: e.target.value,
+                              ram_id: option.id,
+                            });
+                          }}
                         >
                           {option.memory}
                         </button>
@@ -474,7 +522,13 @@ export default function Evaluation() {
                           name="state"
                           value={option.state}
                           className={styles.buttonInputState}
-                          onClick={handlePhoneData}
+                          onClick={(e) => {
+                            setPhoneData({
+                              ...phoneData,
+                              [e.target.name]: e.target.value,
+                              state_id: option.id,
+                            });
+                          }}
                         >
                           {option.state}
                         </button>
@@ -525,14 +579,26 @@ export default function Evaluation() {
                           name="charger"
                           control={<Radio />}
                           label="Oui"
-                          onClick={handlePhoneData}
+                          onClick={(e) => {
+                            setPhoneData({
+                              ...phoneData,
+                              [e.target.name]: e.target.value,
+                              charger_id: true,
+                            });
+                          }}
                         />
                         <FormControlLabel
                           value="non"
                           name="charger"
                           control={<Radio />}
                           label="Non"
-                          onClick={handlePhoneData}
+                          onClick={(e) => {
+                            setPhoneData({
+                              ...phoneData,
+                              [e.target.name]: e.target.value,
+                              charger_id: false,
+                            });
+                          }}
                         />
                       </RadioGroup>
                     </FormControl>
@@ -602,7 +668,7 @@ export default function Evaluation() {
                     </button>
                     <button
                       type="button"
-                      onClick={handleCalculatePrice}
+                      onClick={(handleCalculatePrice, registerPhone)}
                       className={styles.validateResetButton}
                     >
                       Calculer le prix

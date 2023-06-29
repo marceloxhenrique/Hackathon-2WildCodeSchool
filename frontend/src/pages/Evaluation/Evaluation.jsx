@@ -18,6 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Navbar from "../../components/Navbar";
 import android from "../../assets/android.png";
 import apple from "../../assets/apple.png";
+import framePhone from "../../assets/frame-iphone.png";
 import styles from "./Evaluation.module.css";
 
 const brandAvailable = [
@@ -109,8 +110,12 @@ const state = [
 
 export default function Evaluation() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [registerButton, setRegisterButton] = React.useState(false);
+  const [registerButton, setRegisterButton] = React.useState(true);
+  const [validatePhone, setValidatePhone] = React.useState(true);
 
+  const handleToggle = () => {
+    setValidatePhone(true);
+  };
   const [phoneData, setPhoneData] = React.useState({
     operatyngSystem: "",
     brand: "",
@@ -488,7 +493,7 @@ export default function Evaluation() {
                       <div>
                         <Button
                           variant="contained"
-                          onClick={handleNext}
+                          onClick={(handleNext, handleToggle)}
                           sx={{ mt: 1, mr: 1 }}
                         >
                           prochain
@@ -506,14 +511,52 @@ export default function Evaluation() {
                 </Step>
                 {/* {Finished step phone state} */}
               </Stepper>
-              <div className={styles.container}>
-                <button type="button" className={styles.validateResetButton}>
-                  Retour
-                </button>
-                <button type="button" className={styles.validateResetButton}>
-                  Valider
-                </button>
-              </div>
+              {validatePhone ? (
+                <>
+                  <div className={styles.validatePhone}>
+                    <img src={framePhone} alt="" />
+
+                    <div className={styles.phonedisplayData}>
+                      <p>
+                        Système d’exploitation:{" "}
+                        <b>{phoneData.operatyngSystem}</b>
+                      </p>
+                      <p>
+                        Marque: <b>{phoneData.brand}</b>{" "}
+                      </p>
+                      <p>
+                        Modèle: <b>{phoneData.model} </b>{" "}
+                      </p>
+                      <p>
+                        Couleur: <b>{phoneData.color} </b>{" "}
+                      </p>
+                      <p>
+                        Capacité de stockage: <b>{phoneData.memory}</b>{" "}
+                      </p>
+                      <p>
+                        État du téléphone : <b>{phoneData.state} </b>
+                      </p>
+                      <p>
+                        Présence d’un chargeur ?: <b>{phoneData.charger}</b>{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.containerValidate}>
+                    <button
+                      type="button"
+                      className={styles.validateResetButton}
+                    >
+                      Retour
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.validateResetButton}
+                    >
+                      Valider
+                    </button>
+                  </div>
+                </>
+              ) : undefined}
               <Paper square elevation={0} sx={{ p: 3 }}>
                 <Typography>
                   Toutes les étapes sont terminées - vous avez terminé

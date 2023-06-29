@@ -107,3 +107,29 @@
   background-color: #3fb636;
 
 }
+
+.containerValidate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.validatePhone {
+  border: 1px solid #00d7db;
+  border-radius: 0.1em;
+  margin-top: 2em;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.phonedisplayData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.7em;
+  text-align: left;
+
+}

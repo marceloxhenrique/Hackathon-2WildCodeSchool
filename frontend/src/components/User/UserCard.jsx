@@ -20,7 +20,12 @@ export default function UserCard({ user }) {
         }}
       >
         <CardContent sx={{ mx: 2 }}>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            color="secondary"
+          >
             {user.fullname.charAt(0).toUpperCase() + user.fullname.slice(1)}{" "}
           </Typography>
           <Typography variant="body1" color="text.secondary" gutterBottom>

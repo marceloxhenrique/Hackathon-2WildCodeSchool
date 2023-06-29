@@ -605,7 +605,7 @@ export default function Evaluation() {
                       onClick={handleCalculatePrice}
                       className={styles.validateResetButton}
                     >
-                      Valider
+                      Calculer le prix
                     </button>
                   </div>
                 </>

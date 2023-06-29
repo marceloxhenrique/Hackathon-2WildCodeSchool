@@ -14,6 +14,7 @@ import CreateUser from "./components/Admin/CreateUser";
 import DeleteUser from "./components/Admin/DeleteUser";
 import UsersTable from "./components/Admin/UsersTable";
 import PhonesTable from "./components/Admin/PhonesTable";
+import PhonesSpecs from "./components/Admin/PhonesSpecs";
 
 function App() {
   const theme = createTheme({
@@ -46,6 +47,7 @@ function App() {
             <Route path="delete-user" element={<DeleteUser />} />
             <Route path="users-list" element={<UsersTable />} />
             <Route path="phones-list" element={<PhonesTable />} />
+            <Route path="phones-specs" element={<PhonesSpecs />} />
           </Route>
           <Route path="/faq" element={<FAQ />} />
           <Route path="/profile" element={<UserProfile />} />

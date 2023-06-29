@@ -12,7 +12,7 @@ export default function Admin() {
     <>
       <Navbar />
       <Container maxWidth="xxl" sx={{ mt: 2 }}>
-        <Typography variant="h3" color="primary" sx={{ py: 2 }}>
+        <Typography variant="h4" color="primary" sx={{ py: 2 }}>
           Page Administrateur
         </Typography>
         <Divider light />

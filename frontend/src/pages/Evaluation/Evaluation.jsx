@@ -20,95 +20,66 @@ import android from "../../assets/android.png";
 import apple from "../../assets/apple.png";
 import framePhone from "../../assets/frame-iphone.png";
 import styles from "./Evaluation.module.css";
-
-const brandAvailable = [
-  {
-    id: 1,
-    brand: "Apple",
-  },
-  {
-    id: 2,
-    brand: "Samsung",
-  },
-  {
-    id: 3,
-    brand: "Xiaomi",
-  },
-];
-
-const modelAvailable = [
-  {
-    id: 1,
-    model: "iPhone 10 Pro",
-  },
-  {
-    id: 2,
-    model: "Samsung s18",
-  },
-  {
-    id: 3,
-    model: "Redmi 12C",
-  },
-];
-
-const colorAvailable = [
-  {
-    id: 1,
-    color: "Noir",
-  },
-  {
-    id: 2,
-    color: "Argent",
-  },
-  {
-    id: 3,
-    color: "Bleu",
-  },
-];
-
-const memory = [
-  {
-    id: 1,
-    memory: "8 Go",
-  },
-  {
-    id: 2,
-    memory: "16 Go",
-  },
-  {
-    id: 3,
-    memory: "32 Go",
-  },
-  {
-    id: 4,
-    memory: "64 Go",
-  },
-  {
-    id: 5,
-    memory: "128 Go",
-  },
-  {
-    id: 6,
-    memory: "256 Go",
-  },
-];
-
-const state = [
-  {
-    id: 1,
-    state: "État correct",
-  },
-  {
-    id: 2,
-    state: "Bon état",
-  },
-  {
-    id: 3,
-    state: "Très bon état",
-  },
-];
+import { api } from "./api";
 
 export default function Evaluation() {
+  const [phoneData, setPhoneData] = React.useState({
+    operatyngSystem: "",
+    brand: "",
+    model: "",
+    color: "",
+    memory: "",
+    ram: "",
+    state: "",
+    charger: "Oui",
+  });
+
+  const [brandAvailable, setBrandavailable] = React.useState({});
+  const [modelsAvailable, setModelsAvailable] = React.useState({});
+  const [colorsAvailable, setColorsAvailable] = React.useState({});
+  const [storageAvailable, setStorageAvailable] = React.useState({});
+  const [memoryAvailable, setMemoryAvailable] = React.useState({});
+  const [stateAvailable, setStateAvailable] = React.useState({});
+
+  React.useEffect(() => {
+    const getBrands = async () => {
+      const res = await api.brandAvailable();
+      setBrandavailable(res);
+    };
+
+    const getModels = async () => {
+      const res = await api.modelAvailable();
+      setModelsAvailable(res);
+    };
+
+    const getColors = async () => {
+      const res = await api.colorAvailable();
+      setColorsAvailable(res);
+    };
+
+    const getStorage = async () => {
+      const res = await api.storageAvailable();
+      setStorageAvailable(res);
+    };
+
+    const getMemory = async () => {
+      const res = await api.memoryAvailable();
+      setMemoryAvailable(res);
+    };
+
+    const getState = async () => {
+      const res = await api.stateAvailable();
+      setStateAvailable(res);
+    };
+
+    getBrands();
+    getModels();
+    getColors();
+    getStorage();
+    getMemory();
+    getState();
+  }, [phoneData]);
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [registerButton, setRegisterButton] = React.useState(false);
   const [validatePhone, setValidatePhone] = React.useState(false);
@@ -116,15 +87,6 @@ export default function Evaluation() {
   const handleToggle = () => {
     setValidatePhone(true);
   };
-  const [phoneData, setPhoneData] = React.useState({
-    operatyngSystem: "",
-    brand: "",
-    model: "",
-    color: "",
-    memory: "",
-    state: "",
-    charger: "Oui",
-  });
 
   const handlePhoneData = (e) => {
     setPhoneData({ ...phoneData, [e.target.name]: e.target.value });
@@ -141,14 +103,11 @@ export default function Evaluation() {
   const handleReset = () => {
     setActiveStep(0);
   };
-
   const handleLastResetButton = () => {
     setValidatePhone(false);
-    // handleBack();
-    // setValidatePhone(false);
   };
 
-  const [price, setPrice] = React.useState("");
+  const [price, setPrice] = React.useState();
 
   const handleCalculatePrice = () => {
     console.warn(phoneData);
@@ -165,23 +124,23 @@ export default function Evaluation() {
     }
 
     // valeur en fonction de  la mémoire
-    if (phoneData.memory === 4) {
+    if (phoneData.ram === 4) {
       valM = 30;
-    } else if (phoneData.memory === 6) {
+    } else if (phoneData.ram === 6) {
       valM = 40;
-    } else if (phoneData.memory === 8) {
+    } else if (phoneData.ram === 8) {
       valM = 54;
     }
 
     // valeur en fonction du stockage
-    if (phoneData.storage === "64 Go") {
+    if (phoneData.memory === "64 Go") {
       valS = 31;
-    } else if (phoneData.storage === "128 Go") {
+    } else if (phoneData.memory === "128 Go") {
       valS = 45;
-    } else if (phoneData.storage === "256 Go") {
+    } else if (phoneData.memory === "256 Go") {
       valS = 66;
     }
-
+    // console.log(valA)
     // Calculating the price
     const calculatedPrice = valA + valM + valS;
     setPrice(calculatedPrice);
@@ -334,7 +293,7 @@ export default function Evaluation() {
                       defaultValue=""
                       sx={{ minWidth: 250, m: 5 }}
                     >
-                      {modelAvailable.map((option) => (
+                      {modelsAvailable.map((option) => (
                         <MenuItem key={option.id} value={option.model}>
                           <ListItemText
                             onClick={() => {
@@ -383,7 +342,7 @@ export default function Evaluation() {
                       defaultValue=""
                       sx={{ minWidth: 250, m: 5 }}
                     >
-                      {colorAvailable.map((option) => (
+                      {colorsAvailable.map((option) => (
                         <MenuItem key={option.id} value={option.color}>
                           <ListItemText
                             onClick={() => {
@@ -426,16 +385,16 @@ export default function Evaluation() {
                   </StepLabel>
                   <StepContent>
                     <div className={styles.container}>
-                      {memory.map((option) => (
+                      {storageAvailable.map((option) => (
                         <button
                           type="button"
                           key={option.id}
                           name="memory"
-                          value={option.memory}
+                          value={option.storage}
                           className={styles.buttonInputMemory}
                           onClick={handlePhoneData}
                         >
-                          {option.memory}
+                          {option.storage}
                         </button>
                       ))}
                     </div>
@@ -457,6 +416,46 @@ export default function Evaluation() {
                   </StepContent>
                 </Step>
                 {/* {Finished step memory} */}
+                {/* {step ram} */}
+                <Step sx={{ minHeight: 150 }}>
+                  <StepLabel>
+                    <Typography variant="h3" color="initial">
+                      RAM
+                    </Typography>
+                  </StepLabel>
+                  <StepContent>
+                    <div className={styles.container}>
+                      {memoryAvailable.map((option) => (
+                        <button
+                          type="button"
+                          key={option.id}
+                          name="ram"
+                          value={option.memory}
+                          className={styles.buttonInputMemory}
+                          onClick={handlePhoneData}
+                        >
+                          {option.memory}
+                        </button>
+                      ))}
+                    </div>
+                    <Typography>{phoneData.ram}</Typography>
+                    <Box sx={{ mb: 2 }}>
+                      <div>
+                        <Button
+                          variant="contained"
+                          onClick={handleNext}
+                          sx={{ mt: 1, mr: 1 }}
+                        >
+                          prochain
+                        </Button>
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+                          retour
+                        </Button>
+                      </div>
+                    </Box>
+                  </StepContent>
+                </Step>
+                {/* {Finished step ram} */}
                 {/* {step phone state} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
@@ -466,7 +465,7 @@ export default function Evaluation() {
                   </StepLabel>
                   <StepContent>
                     <div className={styles.container}>
-                      {state.map((option) => (
+                      {stateAvailable.map((option) => (
                         <button
                           type="button"
                           key={option.id}
@@ -579,6 +578,9 @@ export default function Evaluation() {
                       </p>
                       <p>
                         Capacité de stockage: <b>{phoneData.memory}</b>{" "}
+                      </p>
+                      <p>
+                        RAM: <b>{phoneData.ram} Go</b>{" "}
                       </p>
                       <p>
                         État du téléphone : <b>{phoneData.state} </b>

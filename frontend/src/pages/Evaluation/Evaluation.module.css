@@ -31,11 +31,6 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.523);
 }
 
-.buttonInputClicked {
-  background-color: #3fb636;
-
-}
-
 .buttonInput:hover {
   background-color: #00d7db;
 }
@@ -105,4 +100,10 @@
 
 .validateResetButton:hover {
   background-color: #00d7db;
+}
+
+
+#buttonInputClicked {
+  background-color: #3fb636;
+
 }

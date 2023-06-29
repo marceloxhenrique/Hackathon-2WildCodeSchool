@@ -14,6 +14,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
 import Navbar from "../../components/Navbar";
 import android from "../../assets/android.png";
 import apple from "../../assets/apple.png";
@@ -110,6 +111,20 @@ export default function Evaluation() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [registerButton, setRegisterButton] = React.useState(false);
 
+  const [phoneData, setPhoneData] = React.useState({
+    operatyngSystem: "",
+    brand: "",
+    model: "",
+    color: "",
+    memory: "",
+    state: "",
+    charger: "",
+  });
+
+  const handlePhoneData = (e) => {
+    setPhoneData({ ...phoneData, [e.target.name]: e.target.value });
+  };
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -159,16 +174,28 @@ export default function Evaluation() {
                   </StepLabel>
                   <StepContent>
                     <div className={styles.container}>
-                      <button type="button" className={styles.buttonInput}>
+                      <button
+                        onClick={handlePhoneData}
+                        type="button"
+                        className={styles.buttonInput}
+                        name="operatyngSystem"
+                        value="Android"
+                      >
                         Android
                         <img src={android} alt="Android icon" />
                       </button>
-                      <button type="button" className={styles.buttonInput}>
+                      <button
+                        onClick={handlePhoneData}
+                        type="button"
+                        className={styles.buttonInput}
+                        name="operatyngSystem"
+                        value="iOS"
+                      >
                         iOS
                         <img src={apple} alt="apple icon" />
                       </button>
                     </div>
-                    <Typography>{}</Typography>
+                    <Typography>{phoneData.operatyngSystem}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -178,11 +205,7 @@ export default function Evaluation() {
                         >
                           prochain
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           retour
                         </Button>
                       </div>
@@ -207,14 +230,26 @@ export default function Evaluation() {
                     >
                       {brandAvailable.map((option) => (
                         <MenuItem
-                          sx={{ minWidth: 250 }}
                           key={option.id}
                           value={option.brand}
+                          name="brand"
                         >
-                          {option.brand}
+                          <ListItemText
+                            onClick={() => {
+                              setPhoneData({
+                                ...phoneData,
+                                brand: option.brand,
+                              });
+                            }}
+                            name="brand"
+                            value={option.brand}
+                            primary={option.brand}
+                          />
+                          {/* {option.brand} */}
                         </MenuItem>
                       ))}
                     </TextField>
+                    <Typography>{phoneData.brand}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -224,11 +259,7 @@ export default function Evaluation() {
                         >
                           next
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           Back
                         </Button>
                       </div>
@@ -253,10 +284,21 @@ export default function Evaluation() {
                     >
                       {modelAvailable.map((option) => (
                         <MenuItem key={option.id} value={option.model}>
-                          {option.model}
+                          <ListItemText
+                            onClick={() => {
+                              setPhoneData({
+                                ...phoneData,
+                                model: option.model,
+                              });
+                            }}
+                            name="brand"
+                            value={option.model}
+                            primary={option.model}
+                          />
                         </MenuItem>
                       ))}
                     </TextField>
+                    <Typography>{phoneData.model}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -266,11 +308,7 @@ export default function Evaluation() {
                         >
                           next
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           Back
                         </Button>
                       </div>
@@ -295,10 +333,21 @@ export default function Evaluation() {
                     >
                       {colorAvailable.map((option) => (
                         <MenuItem key={option.id} value={option.color}>
-                          {option.color}
+                          <ListItemText
+                            onClick={() => {
+                              setPhoneData({
+                                ...phoneData,
+                                color: option.color,
+                              });
+                            }}
+                            name="brand"
+                            value={option.color}
+                            primary={option.color}
+                          />
                         </MenuItem>
                       ))}
                     </TextField>
+                    <Typography>{phoneData.color}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -308,11 +357,7 @@ export default function Evaluation() {
                         >
                           next
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           Back
                         </Button>
                       </div>
@@ -333,13 +378,16 @@ export default function Evaluation() {
                         <button
                           type="button"
                           key={option.id}
+                          name="memory"
+                          value={option.memory}
                           className={styles.buttonInputMemory}
+                          onClick={handlePhoneData}
                         >
                           {option.memory}
                         </button>
                       ))}
                     </div>
-                    <Typography>{}</Typography>
+                    <Typography>{phoneData.memory}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -349,11 +397,7 @@ export default function Evaluation() {
                         >
                           prochain
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           retour
                         </Button>
                       </div>
@@ -374,12 +418,16 @@ export default function Evaluation() {
                         <button
                           type="button"
                           key={option.id}
+                          name="state"
+                          value={option.state}
                           className={styles.buttonInputState}
+                          onClick={handlePhoneData}
                         >
                           {option.state}
                         </button>
                       ))}
                     </div>
+                    <Typography>{phoneData.state}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -389,11 +437,7 @@ export default function Evaluation() {
                         >
                           prochain
                         </Button>
-                        <Button
-                          // disabled={}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                           retour
                         </Button>
                       </div>
@@ -410,9 +454,6 @@ export default function Evaluation() {
                   </StepLabel>
                   <StepContent>
                     <FormControl>
-                      {/* <FormLabel id="demo-radio-buttons-group-label">
-                        Chargeur
-                      </FormLabel> */}
                       <RadioGroup
                         sx={{
                           display: "flex",
@@ -428,16 +469,21 @@ export default function Evaluation() {
                       >
                         <FormControlLabel
                           value="oui"
+                          name="charger"
                           control={<Radio />}
                           label="Oui"
+                          onClick={handlePhoneData}
                         />
                         <FormControlLabel
                           value="non"
+                          name="charger"
                           control={<Radio />}
                           label="Non"
+                          onClick={handlePhoneData}
                         />
                       </RadioGroup>
                     </FormControl>
+                    <Typography>{phoneData.charger}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <div>
                         <Button
@@ -468,7 +514,6 @@ export default function Evaluation() {
                   Valider
                 </button>
               </div>
-              {/* {activeStep === steps.length && ( */}
               <Paper square elevation={0} sx={{ p: 3 }}>
                 <Typography>
                   Toutes les étapes sont terminées - vous avez terminé
@@ -477,7 +522,6 @@ export default function Evaluation() {
                   Reset
                 </Button>
               </Paper>
-              {/* )} */}
             </Box>
           </Typography>
         )}

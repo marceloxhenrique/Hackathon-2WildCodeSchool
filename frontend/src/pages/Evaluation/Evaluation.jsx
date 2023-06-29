@@ -105,8 +105,6 @@ export default function Evaluation() {
   };
   const handleLastResetButton = () => {
     setValidatePhone(false);
-    // handleBack();
-    // setValidatePhone(false);
   };
 
   const [price, setPrice] = React.useState();

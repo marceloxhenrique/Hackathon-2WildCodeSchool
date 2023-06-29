@@ -54,6 +54,7 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/profil" element={<UserProfile />} />
             <Route path="/infos-tech" element={<InfosTech />} />
+            <Route path="/logout" element={<Login />} />
           </Routes>
         </UserContextProvider>
       </ThemeProvider>

@@ -16,10 +16,13 @@ import MenuItem from "@mui/material/MenuItem";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
+
 import logo from "../assets/logoSmall.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { logout } = useUserContext();
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElNavMenu, setAnchorElNavMenu] = React.useState(null);
@@ -51,6 +54,7 @@ export default function Navbar() {
   };
 
   const handleLinkLogout = () => {
+    logout();
     navigate("/logout");
   };
   const handleLinkUser = () => {

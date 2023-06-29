@@ -10,16 +10,11 @@ import Button from "@mui/material/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function CreateBrand() {
+export default function CreateSystem() {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const notifyCreation = () => toast.success("Nouvel Utilisateur Enregistré!");
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    phone: "",
-    city: "",
+    system: "",
     terms: false,
   });
 
@@ -32,16 +27,16 @@ export default function CreateBrand() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmitBrand = (event) => {
+  const handleSubmitsystem = (event) => {
     event.preventDefault();
 
     if (validateForm()) {
       axios
-        .post(`${BACKEND_URL}/brands`, { ...formData })
+        .post(`${BACKEND_URL}/os`, { ...formData })
         .then(() => {
           // Clear the form data after successful submission
           setFormData({
-            brand: "",
+            system: "",
             terms: false,
           });
           notifyCreation();
@@ -69,20 +64,20 @@ export default function CreateBrand() {
           }}
         >
           <Typography variant="h5" color="secondary">
-            Enregistrer une Nouvelle Marque
+            Enregistrer un Nouveau Système d'Opération
           </Typography>
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmitBrand}
+            onSubmit={handleSubmitsystem}
             sx={{ mt: 3 }}
           >
             <TextField
-              name="brand"
+              name="os"
               required
               fullWidth
-              id="brandName"
-              label="Brand Name"
+              id="systemName"
+              label="Operating System"
               autoFocus
               onChange={handleInputChange}
             />

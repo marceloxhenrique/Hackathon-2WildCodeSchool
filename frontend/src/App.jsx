@@ -44,7 +44,7 @@ function App() {
             <Route path="delete-user" element={<DeleteUser />} />
           </Route>
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/profil" element={<UserProfile />} />
           <Route path="/infos-tech" element={<InfosTech />} />
         </Routes>
       </ThemeProvider>

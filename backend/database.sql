@@ -1,6 +1,8 @@
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS user, phone, os, brand, model , color, memory, storage, state, category, network, screen_size;
 
+SET foreign_key_checks = 0;
+
 CREATE TABLE user (
   id INT NOT NULL AUTO_INCREMENT,
   fullname VARCHAR(100) NOT NULL,
@@ -92,6 +94,7 @@ ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE phone (
   id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
   os_id INT NOT NULL,
   brand_id INT NOT NULL,
   model_id INT NOT NULL,
@@ -104,6 +107,7 @@ CREATE TABLE phone (
   network_id INT,
   screen_size_id INT,
   PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (os_id) REFERENCES os(id),
   FOREIGN KEY (brand_id) REFERENCES brand(id),
   FOREIGN KEY (model_id) REFERENCES model(id),
@@ -117,7 +121,7 @@ CREATE TABLE phone (
 )
 ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-SET foreign_key_checks = 0;
+
 
 
 INSERT INTO user (fullname, email, phone, city, hashedPassword, admin)
@@ -131,21 +135,21 @@ VALUES
   ('Christopher Moore', 'christopher.moore@example.com', '5554567890', 'Miami', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
   ('Olivia Harris', 'olivia.harris@example.com', '9870123456', 'Dallas', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
   ('Matthew Clark', 'matthew.clark@example.com', '5557891230', 'Denver', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
-  ('Ava Turner', 'ava.turner@example.com', '1230123456', 'Boston', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0);
+  ('Ava Turner', 'ava.turner@example.com', '1230123456', 'Boston', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Pierre Saumont', 'pierre.saumont@gmail.com', '0610754379', 'Lyon', '$argon2id$v=19$m=19456,t=2,p=1$FVGLBUchiUfrKz4MGBMlxA$8FFVnRicJQf1LU8ETak2wrDTIUzfHkr0iGhQf1X2WL0', 1);
 
-
-INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
+INSERT INTO phone (user_id, os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
 VALUES
-  (1, 1, 1, 1, 1, 1, 1, 1, true, 1, 1),
-  (1, 1, 1, 2, 2, 2, 2, 2, false, 2, 2),
-  (2, 2, 2, 1, 1, 1, 1, 1, true, 1, 1),
-  (2, 2, 2, 2, 2, 2, 2, 2, false, 2, 2),
-  (1, 2, 1, 1, 2, 1, 1, 2, true, 2, 1),
-  (1, 2, 1, 2, 1, 2, 2, 1, false, 1, 2),
-  (2, 1, 2, 1, 2, 1, 2, 2, true, 2, 1),
-  (2, 1, 2, 2, 1, 2, 1, 1, false, 1, 2),
-  (1, 1, 2, 1, 1, 2, 2, 2, true, 2, 2),
-  (2, 2, 1, 2, 2, 1, 1, 1, false, 1, 1);
+  (11, 1, 2, 1, 3, 1, 1, 1, 1, true, 1, 1),
+  (5, 1, 1, 3, 2, 2, 2, 2, 2, false, 2, 2),
+  (2, 2, 2, 2, 1, 1, 1, 1, 1, true, 1, 1),
+  (6, 2, 2, 2, 2, 2, 2, 2, 2, false, 2, 2),
+  (7, 1, 2, 1, 1, 2, 1, 1, 2, true, 2, 1),
+  (11, 1, 2, 1, 2, 1, 2, 2, 1, false, 1, 2),
+  (13, 1, 2, 3, 1, 2, 1, 2, 2, true, 2, 1),
+  (5, 2, 1, 2, 2, 1, 2, 1, 1, false, 1, 2),
+  (8, 1, 1, 2, 1, 1, 2, 2, 2, true, 2, 2),
+  (11, 2, 2, 1, 2, 2, 1, 1, 1, false, 1, 1);
 
 
 INSERT INTO os (os, version)

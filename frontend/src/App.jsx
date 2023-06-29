@@ -9,6 +9,7 @@ import Admin from "./pages/Admin";
 import FAQ from "./pages/FAQ";
 import UserProfile from "./pages/UserProfile";
 import InfosTech from "./pages/InfosTech";
+import ChatBot from "./pages/ChatBot";
 import ChooseAction from "./components/Admin/ChooseAction";
 import CreateUser from "./components/Admin/CreateUser";
 import DeleteUser from "./components/Admin/DeleteUser";
@@ -43,6 +44,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/evaluation" element={<Evaluation />} />
+            <Route path="/chatbot" element={<ChatBot />} />
             <Route path="/admin" element={<Admin />}>
               <Route index element={<ChooseAction />} />
               <Route path="create-user" element={<CreateUser />} />

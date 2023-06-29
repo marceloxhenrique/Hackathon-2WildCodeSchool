@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import SmartToyRoundedIcon from "@mui/icons-material/SmartToyRounded";
 import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import RssFeedRoundedIcon from "@mui/icons-material/RssFeedRounded";
 import Container from "@mui/material/Container";
@@ -64,6 +65,9 @@ export default function Navbar() {
   const handleLinkFAQ = () => {
     navigate("/faq");
   };
+  const handleLinkChat = () => {
+    navigate("/chatbot");
+  };
 
   return (
     <AppBar position="sticky" color="primary">
@@ -107,6 +111,11 @@ export default function Navbar() {
               <MenuItem onClick={handleLinkEval}>
                 <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
                   Evaluer un Téléphone
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleLinkChat}>
+                <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
+                  ChatBot
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleLinkInfos}>
@@ -162,6 +171,21 @@ export default function Navbar() {
               >
                 <PhonelinkSetupIcon />
                 <Typography sx={{ ml: 1 }}>Evaluer un Téléphone</Typography>
+              </Box>
+            </Button>
+            <Button
+              onClick={handleLinkChat}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex", alignItems: "center" },
+                  pl: 5,
+                }}
+              >
+                <SmartToyRoundedIcon />
+                <Typography sx={{ ml: 1 }}>ChatBot</Typography>
               </Box>
             </Button>
             <Button

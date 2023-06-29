@@ -50,7 +50,7 @@ function App() {
             <Route path="phones-specs" element={<PhonesSpecs />} />
           </Route>
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/profil" element={<UserProfile />} />
           <Route path="/infos-tech" element={<InfosTech />} />
         </Routes>
       </ThemeProvider>

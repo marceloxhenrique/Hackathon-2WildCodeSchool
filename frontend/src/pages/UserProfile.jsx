@@ -50,7 +50,7 @@ export default function UserProfile() {
               color="initial"
               sx={{
                 p: 2,
-                backgroundColor: "primary.main",
+                backgroundColor: "secondary.main",
                 color: "white",
                 borderRadius: 2,
               }}
@@ -60,22 +60,6 @@ export default function UserProfile() {
             <Paper sx={{ height: "100%" }}>
               <WorkCard />
             </Paper>
-          </Grid>
-        </Grid>
-        <Grid container spacing={4} justifyContent="flex-end" sx={{ my: 2 }}>
-          <Grid item xs={12} lg={7.5} elevation={3}>
-            <Typography
-              variant="h6"
-              color="initial"
-              sx={{
-                p: 2,
-                backgroundColor: "primary.main",
-                color: "white",
-                borderRadius: 2,
-              }}
-            >
-              Mes succès
-            </Typography>
           </Grid>
         </Grid>
       </Container>

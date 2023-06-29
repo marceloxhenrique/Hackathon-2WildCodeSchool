@@ -30,9 +30,46 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const ItemManager = require("./ItemManager");
+const UserManager = require("./userManager");
+const MemoryManager = require("./MemoryManager");
+const BrandManager = require("./BrandManager");
+const ModelManager = require("./ModelManager");
+const CategoryManager = require("./CategoryManager");
+const ColorManager = require("./ColorManager");
+const NetworkManager = require("./NetworkManager");
+const OsManager = require("./OsManager");
+const ScreensizeManager = require("./ScreensizeManager");
+const StateManager = require("./StateManager");
+const StorageManager = require("./StorageManager");
+const PhoneManager = require("./PhoneManager");
 
 models.item = new ItemManager();
+models.user = new UserManager();
+models.memory = new MemoryManager();
+models.brand = new BrandManager();
+models.model = new ModelManager();
+models.category = new CategoryManager();
+models.color = new ColorManager();
+models.network = new NetworkManager();
+models.os = new OsManager();
+models.screensize = new ScreensizeManager();
+models.state = new StateManager();
+models.storage = new StorageManager();
+models.phone = new PhoneManager();
+
 models.item.setDatabase(pool);
+models.user.setDatabase(pool);
+models.memory.setDatabase(pool);
+models.brand.setDatabase(pool);
+models.model.setDatabase(pool);
+models.category.setDatabase(pool);
+models.color.setDatabase(pool);
+models.network.setDatabase(pool);
+models.os.setDatabase(pool);
+models.screensize.setDatabase(pool);
+models.state.setDatabase(pool);
+models.storage.setDatabase(pool);
+models.phone.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

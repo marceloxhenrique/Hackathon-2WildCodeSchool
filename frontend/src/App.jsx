@@ -9,6 +9,14 @@ import Admin from "./pages/Admin";
 import FAQ from "./pages/FAQ";
 import UserProfile from "./pages/UserProfile";
 import InfosTech from "./pages/InfosTech";
+import ChatBot from "./pages/ChatBot";
+import ChooseAction from "./components/Admin/ChooseAction";
+import CreateUser from "./components/Admin/CreateUser";
+import DeleteUser from "./components/Admin/DeleteUser";
+import UsersTable from "./components/Admin/UsersTable";
+import PhonesTable from "./components/Admin/PhonesTable";
+import PhonesSpecs from "./components/Admin/PhonesSpecs";
+import { UserContextProvider } from "./contexts/UserContext";
 
 function App() {
   const theme = createTheme({
@@ -31,15 +39,26 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/evaluation" element={<Evaluation />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/infos-tech" element={<InfosTech />} />
-        </Routes>
+        <UserContextProvider>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/evaluation" element={<Evaluation />} />
+            <Route path="/chatbot" element={<ChatBot />} />
+            <Route path="/admin" element={<Admin />}>
+              <Route index element={<ChooseAction />} />
+              <Route path="create-user" element={<CreateUser />} />
+              <Route path="delete-user" element={<DeleteUser />} />
+              <Route path="users-list" element={<UsersTable />} />
+              <Route path="phones-list" element={<PhonesTable />} />
+              <Route path="phones-specs" element={<PhonesSpecs />} />
+            </Route>
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/profil" element={<UserProfile />} />
+            <Route path="/infos-tech" element={<InfosTech />} />
+            <Route path="/logout" element={<Login />} />
+          </Routes>
+        </UserContextProvider>
       </ThemeProvider>
     </div>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
@@ -21,8 +20,6 @@ import android from "../../assets/android.png";
 import apple from "../../assets/apple.png";
 import framePhone from "../../assets/frame-iphone.png";
 import styles from "./Evaluation.module.css";
-// eslint-disable-next-line import/no-unresolved
-import PostPhone from "../../components/postPhone";
 
 const brandAvailable = [
   {
@@ -72,54 +69,27 @@ const colorAvailable = [
 const memory = [
   {
     id: 1,
-    memory: 8,
+    memory: "8 Go",
   },
   {
     id: 2,
-    memory: 16,
+    memory: "16 Go",
   },
   {
     id: 3,
-    memory: 32,
+    memory: "32 Go",
   },
   {
     id: 4,
-    memory: 64,
+    memory: "64 Go",
   },
   {
     id: 5,
-    memory: 128,
+    memory: "128 Go",
   },
   {
     id: 6,
-    memory: 256,
-  },
-];
-
-const ram = [
-  {
-    id: 1,
-    ram: 1,
-  },
-  {
-    id: 2,
-    ram: 2,
-  },
-  {
-    id: 3,
-    ram: 3,
-  },
-  {
-    id: 4,
-    ram: 4,
-  },
-  {
-    id: 5,
-    ram: 5,
-  },
-  {
-    id: 6,
-    ram: 6,
+    memory: "256 Go",
   },
 ];
 
@@ -152,7 +122,6 @@ export default function Evaluation() {
     model: "",
     color: "",
     memory: "",
-    ram: "",
     state: "",
     charger: "Oui",
   });
@@ -178,17 +147,58 @@ export default function Evaluation() {
     // handleBack();
     // setValidatePhone(false);
   };
+
+  const [price, setPrice] = React.useState("");
+
+  const handleCalculatePrice = () => {
+    console.warn(phoneData);
+
+    let valA = "";
+    let valM = "";
+    let valS = "";
+
+    // valeur en fonction du de l'indice
+    if (phoneData.operatyngSystem === "Android") {
+      valA = 40;
+    } else if (phoneData.operatyngSystem === "iOS") {
+      valA = 44;
+    }
+
+    // valeur en fonction de  la mémoire
+    if (phoneData.memory === 4) {
+      valM = 30;
+    } else if (phoneData.memory === 6) {
+      valM = 40;
+    } else if (phoneData.memory === 8) {
+      valM = 54;
+    }
+
+    // valeur en fonction du stockage
+    if (phoneData.storage === "64 Go") {
+      valS = 31;
+    } else if (phoneData.storage === "128 Go") {
+      valS = 45;
+    } else if (phoneData.storage === "256 Go") {
+      valS = 66;
+    }
+
+    // Calculating the price
+    const calculatedPrice = valA + valM + valS;
+    setPrice(calculatedPrice);
+  };
+
   return (
     <>
       <Navbar />
       <Container maxWidth="lg" sx={{ mt: 5 }}>
-        <Typography variant="h2" color="initial">
+        <Typography variant="h4" color="initial">
           <Box
             sx={{
               maxWidth: "xl",
               display: "flex",
               alignItems: "center",
-              minHeight: 300,
+              justifyContent: "center",
+              minHeight: 200,
             }}
           >
             Commencer l’enregistrement de nouveaux téléphones
@@ -204,13 +214,13 @@ export default function Evaluation() {
           </button>
         </Typography>
         {registerButton && (
-          <Typography variant="h2" color="initial">
+          <Typography variant="h4" color="initial">
             <Box sx={{ maxWidth: "xl", m: "auto" }}>
               <Stepper activeStep={activeStep} orientation="vertical">
                 {/* {step operating system} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Quel est le système d’exploitation du téléphone ?
                     </Typography>
                   </StepLabel>
@@ -258,7 +268,7 @@ export default function Evaluation() {
                 {/* {step Brand} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Marque
                     </Typography>
                   </StepLabel>
@@ -312,7 +322,7 @@ export default function Evaluation() {
                 {/* starting step Model */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Modèle
                     </Typography>
                   </StepLabel>
@@ -361,7 +371,7 @@ export default function Evaluation() {
                 {/* starting step Color */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Couleur
                     </Typography>
                   </StepLabel>
@@ -410,7 +420,7 @@ export default function Evaluation() {
                 {/* {step memory} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Capacité de stockage
                     </Typography>
                   </StepLabel>
@@ -447,50 +457,10 @@ export default function Evaluation() {
                   </StepContent>
                 </Step>
                 {/* {Finished step memory} */}
-                {/* {step ram} */}
-                <Step sx={{ minHeight: 150 }}>
-                  <StepLabel>
-                    <Typography variant="h3" color="initial">
-                      RAM
-                    </Typography>
-                  </StepLabel>
-                  <StepContent>
-                    <div className={styles.container}>
-                      {ram.map((option) => (
-                        <button
-                          type="button"
-                          key={option.id}
-                          name="ram"
-                          value={option.ram}
-                          className={styles.buttonInputMemory}
-                          onClick={handlePhoneData}
-                        >
-                          {option.ram}
-                        </button>
-                      ))}
-                    </div>
-                    <Typography>{phoneData.ram}</Typography>
-                    <Box sx={{ mb: 2 }}>
-                      <div>
-                        <Button
-                          variant="contained"
-                          onClick={handleNext}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
-                          prochain
-                        </Button>
-                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-                          retour
-                        </Button>
-                      </div>
-                    </Box>
-                  </StepContent>
-                </Step>
-                {/* {Finished step ram} */}
                 {/* {step phone state} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       État du téléphone
                     </Typography>
                   </StepLabel>
@@ -530,7 +500,7 @@ export default function Evaluation() {
                 {/* {step phone charger} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       Présence d’un chargeur ?
                     </Typography>
                   </StepLabel>
@@ -608,10 +578,7 @@ export default function Evaluation() {
                         Couleur: <b>{phoneData.color} </b>{" "}
                       </p>
                       <p>
-                        Capacité de stockage: <b>{phoneData.memory} Go</b>{" "}
-                      </p>
-                      <p>
-                        RAM: <b>{phoneData.ram} Go</b>{" "}
+                        Capacité de stockage: <b>{phoneData.memory}</b>{" "}
                       </p>
                       <p>
                         État du téléphone : <b>{phoneData.state} </b>
@@ -631,6 +598,7 @@ export default function Evaluation() {
                     </button>
                     <button
                       type="button"
+                      onClick={handleCalculatePrice}
                       className={styles.validateResetButton}
                     >
                       Valider
@@ -639,9 +607,23 @@ export default function Evaluation() {
                 </>
               ) : undefined}
               <Paper square elevation={0} sx={{ p: 3 }}>
-                <Typography>
-                  Toutes les étapes sont terminées - vous avez terminé
-                </Typography>
+                {price && (
+                  <Box>
+                    <Typography variant="h3" color="primary">
+                      Prix Estimé:
+                    </Typography>
+                    <Typography variant="h1" color="primary">
+                      {price}€
+                    </Typography>
+                  </Box>
+                )}
+
+                {price > 0 ? (
+                  <Typography>
+                    Toutes les étapes sont terminées - le téléphone a été
+                    enregistré
+                  </Typography>
+                ) : null}
                 <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                   Reset
                 </Button>
@@ -650,7 +632,6 @@ export default function Evaluation() {
           </Typography>
         )}
       </Container>
-      <PostPhone phoneData={{ ...phoneData }} />
     </>
   );
 }

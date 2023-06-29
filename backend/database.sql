@@ -1,4 +1,3 @@
-
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS user, phone, os, brand, model , color, memory, storage, state, category, network, screen_size;
 
@@ -118,42 +117,110 @@ CREATE TABLE phone (
 )
 ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+SET foreign_key_checks = 0;
+
+
 INSERT INTO user (fullname, email, phone, city, hashedPassword, admin)
 VALUES
-  ('John Doe', 'john.doe@example.com', '1234567890', 'New York', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0);
+  ('John Doe', 'john.doe@example.com', '1234567890', 'New York', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Jane Smith', 'jane.smith@example.com', '9876543210', 'Los Angeles', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Michael Johnson', 'michael.johnson@example.com', '5551234567', 'Chicago', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Emily Davis', 'emily.davis@example.com', '9871234560', 'San Francisco', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Daniel Wilson', 'daniel.wilson@example.com', '5557890123', 'Seattle', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Sarah Thompson', 'sarah.thompson@example.com', '1237894560', 'Houston', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Christopher Moore', 'christopher.moore@example.com', '5554567890', 'Miami', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Olivia Harris', 'olivia.harris@example.com', '9870123456', 'Dallas', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Matthew Clark', 'matthew.clark@example.com', '5557891230', 'Denver', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0),
+  ('Ava Turner', 'ava.turner@example.com', '1230123456', 'Boston', '$argon2id$v=19$m=19456,t=2,p=1$vvakCosUkyOkLzeryb3Ahg$8mfwLBB4Wqv7sDLSoRDSuKqADfnC/cSVo8wHvOnLdLI', 0);
 
-INSERT INTO os (os, version)
-VALUES ('iOS', '14');
-
-INSERT INTO brand (brand)
-VALUES ('Apple');
-
-INSERT INTO model (model, indice)
-VALUES ('Apple', '');
-
-INSERT INTO color (color)
-VALUES ('Noir');
-
-INSERT INTO memory (memory, val_m)
-VALUES ('8RAM', '50');
-
-INSERT INTO storage (storage, val_s)
-VALUES ('32', '50');
-
-INSERT INTO state (state, ponderation)
-VALUES ('Good', '50');
-
-INSERT INTO category (category, val_min, val_max)
-VALUES ('3-B', '165', '255');
-
-INSERT INTO network (network)
-VALUES ('4G');
-
-INSERT INTO screen_size (size)
-VALUES ('6');
 
 INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
-VALUES (1, 1, 1, 1, 1, 1,  1, 1, true, 1, 1  );
+VALUES
+  (1, 1, 1, 1, 1, 1, 1, 1, true, 1, 1),
+  (1, 1, 1, 2, 2, 2, 2, 2, false, 2, 2),
+  (2, 2, 2, 1, 1, 1, 1, 1, true, 1, 1),
+  (2, 2, 2, 2, 2, 2, 2, 2, false, 2, 2),
+  (1, 2, 1, 1, 2, 1, 1, 2, true, 2, 1),
+  (1, 2, 1, 2, 1, 2, 2, 1, false, 1, 2),
+  (2, 1, 2, 1, 2, 1, 2, 2, true, 2, 1),
+  (2, 1, 2, 2, 1, 2, 1, 1, false, 1, 2),
+  (1, 1, 2, 1, 1, 2, 2, 2, true, 2, 2),
+  (2, 2, 1, 2, 2, 1, 1, 1, false, 1, 1);
+
+
+INSERT INTO os (os, version)
+VALUES
+  ('Android', '11'),
+  ('iOS', '15');
+
+INSERT INTO brand (brand)
+VALUES
+  ('Samsung'),
+  ('Google'),
+  ('Huawei'),
+  ('OnePlus'),
+  ('Xiaomi');
+
+INSERT INTO model (model, indice)
+VALUES
+  ('Samsung Galaxy', 'S21'),
+  ('Google Pixel', '5'),
+  ('Huawei P', '40'),
+  ('OnePlus', '9'),
+  ('Xiaomi Redmi', 'Note 10');
+
+INSERT INTO color (color)
+VALUES
+  ('Silver'),
+  ('Blue'),
+  ('Black'),
+  ('White'),
+  ('Pink');
+
+INSERT INTO memory (memory, val_m)
+VALUES
+  ('4GB', '25'),
+  ('6GB', '35'),
+  ('8GB', '50'),
+  ('12GB', '70'),
+  ('16GB', '90');
+
+INSERT INTO storage (storage, val_s)
+VALUES
+  ('64GB', '30'),
+  ('128GB', '50'),
+  ('256GB', '80'),
+  ('512GB', '100');
+
+INSERT INTO state (state, ponderation)
+VALUES
+  ('Excellent', 100),
+  ('Good', 80),
+  ('Fair', 50),
+  ('Poor', 20),
+  ('Broken', 0);
+
+INSERT INTO category (category, val_min, val_max)
+VALUES
+  ('A', '0', '50'),
+  ('B', '51', '100'),
+  ('C', '101', '150'),
+  ('D', '151', '200'),
+  ('E', '201', '255');
+
+INSERT INTO network (network)
+VALUES
+  ('2G'),
+  ('3G'),
+  ('4G'),
+  ('5G');
+
+INSERT INTO screen_size (size)
+VALUES
+  ('5.5'),
+  ('6'),
+  ('6.2'),
+  ('6.5'),
+  ('6.7');
 
 SET foreign_key_checks = 1;
-

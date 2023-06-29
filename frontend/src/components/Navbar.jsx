@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import SmartToyRoundedIcon from "@mui/icons-material/SmartToyRounded";
 import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import RssFeedRoundedIcon from "@mui/icons-material/RssFeedRounded";
 import Container from "@mui/material/Container";
@@ -16,10 +17,13 @@ import MenuItem from "@mui/material/MenuItem";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
+
 import logo from "../assets/logoSmall.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { logout } = useUserContext();
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElNavMenu, setAnchorElNavMenu] = React.useState(null);
@@ -41,7 +45,7 @@ export default function Navbar() {
   };
 
   const handleLinkHome = () => {
-    navigate("/");
+    navigate("/home");
   };
   const handleLinkEval = () => {
     navigate("/evaluation");
@@ -49,8 +53,10 @@ export default function Navbar() {
   const handleLinkInfos = () => {
     navigate("/infos-tech");
   };
-  const handleLinkLogin = () => {
-    navigate("/login");
+
+  const handleLinkLogout = () => {
+    logout();
+    navigate("/logout");
   };
   const handleLinkUser = () => {
     navigate("/profil");
@@ -58,6 +64,9 @@ export default function Navbar() {
 
   const handleLinkFAQ = () => {
     navigate("/faq");
+  };
+  const handleLinkChat = () => {
+    navigate("/chatbot");
   };
 
   return (
@@ -102,6 +111,11 @@ export default function Navbar() {
               <MenuItem onClick={handleLinkEval}>
                 <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
                   Evaluer un Téléphone
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleLinkChat}>
+                <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
+                  ChatBot
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleLinkInfos}>
@@ -157,6 +171,21 @@ export default function Navbar() {
               >
                 <PhonelinkSetupIcon />
                 <Typography sx={{ ml: 1 }}>Evaluer un Téléphone</Typography>
+              </Box>
+            </Button>
+            <Button
+              onClick={handleLinkChat}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex", alignItems: "center" },
+                  pl: 5,
+                }}
+              >
+                <SmartToyRoundedIcon />
+                <Typography sx={{ ml: 1 }}>ChatBot</Typography>
               </Box>
             </Button>
             <Button
@@ -224,7 +253,7 @@ export default function Navbar() {
                   FAQ
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleLinkLogin}>
+              <MenuItem onClick={handleLinkLogout}>
                 <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
                   Logout
                 </Typography>

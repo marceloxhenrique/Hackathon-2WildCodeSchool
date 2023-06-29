@@ -41,7 +41,7 @@ export default function Navbar() {
   };
 
   const handleLinkHome = () => {
-    navigate("/");
+    navigate("/home");
   };
   const handleLinkEval = () => {
     navigate("/evaluation");
@@ -49,8 +49,9 @@ export default function Navbar() {
   const handleLinkInfos = () => {
     navigate("/infos-tech");
   };
-  const handleLinkLogin = () => {
-    navigate("/login");
+
+  const handleLinkLogout = () => {
+    navigate("/logout");
   };
   const handleLinkUser = () => {
     navigate("/profil");
@@ -224,7 +225,7 @@ export default function Navbar() {
                   FAQ
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleLinkLogin}>
+              <MenuItem onClick={handleLinkLogout}>
                 <Typography textAlign="center" variant="h6" sx={{ p: 2 }}>
                   Logout
                 </Typography>

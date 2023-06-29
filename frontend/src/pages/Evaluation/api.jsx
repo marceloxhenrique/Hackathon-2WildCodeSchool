@@ -66,4 +66,14 @@ export const api = {
       console.error(error);
     }
   },
+
+  // eslint-disable-next-line consistent-return
+  registerPhone: async (phoneData) => {
+    try {
+      const res = await instance.post("/phones", phoneData);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

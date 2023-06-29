@@ -11,17 +11,17 @@ export default function Admin() {
   return (
     <>
       <Navbar />
-      <Container maxWidth="xl" sx={{ mt: 2 }}>
+      <Container maxWidth="xxl" sx={{ mt: 2 }}>
         <Typography variant="h3" color="primary" sx={{ py: 2 }}>
           Page Administrateur
         </Typography>
         <Divider light />
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3.5}>
             <NavAdmin />
             <Divider orientation="vertical" />
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={8.5}>
             <Outlet />
           </Grid>
         </Grid>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
@@ -20,6 +21,8 @@ import android from "../../assets/android.png";
 import apple from "../../assets/apple.png";
 import framePhone from "../../assets/frame-iphone.png";
 import styles from "./Evaluation.module.css";
+// eslint-disable-next-line import/no-unresolved
+import PostPhone from "../../components/postPhone";
 
 const brandAvailable = [
   {
@@ -69,27 +72,54 @@ const colorAvailable = [
 const memory = [
   {
     id: 1,
-    memory: "8 Go",
+    memory: 8,
   },
   {
     id: 2,
-    memory: "16 Go",
+    memory: 16,
   },
   {
     id: 3,
-    memory: "32 Go",
+    memory: 32,
   },
   {
     id: 4,
-    memory: "64 Go",
+    memory: 64,
   },
   {
     id: 5,
-    memory: "128 Go",
+    memory: 128,
   },
   {
     id: 6,
-    memory: "256 Go",
+    memory: 256,
+  },
+];
+
+const ram = [
+  {
+    id: 1,
+    ram: 1,
+  },
+  {
+    id: 2,
+    ram: 2,
+  },
+  {
+    id: 3,
+    ram: 3,
+  },
+  {
+    id: 4,
+    ram: 4,
+  },
+  {
+    id: 5,
+    ram: 5,
+  },
+  {
+    id: 6,
+    ram: 6,
   },
 ];
 
@@ -122,6 +152,7 @@ export default function Evaluation() {
     model: "",
     color: "",
     memory: "",
+    ram: "",
     state: "",
     charger: "Oui",
   });
@@ -416,6 +447,46 @@ export default function Evaluation() {
                   </StepContent>
                 </Step>
                 {/* {Finished step memory} */}
+                {/* {step ram} */}
+                <Step sx={{ minHeight: 150 }}>
+                  <StepLabel>
+                    <Typography variant="h3" color="initial">
+                      RAM
+                    </Typography>
+                  </StepLabel>
+                  <StepContent>
+                    <div className={styles.container}>
+                      {ram.map((option) => (
+                        <button
+                          type="button"
+                          key={option.id}
+                          name="ram"
+                          value={option.ram}
+                          className={styles.buttonInputMemory}
+                          onClick={handlePhoneData}
+                        >
+                          {option.ram}
+                        </button>
+                      ))}
+                    </div>
+                    <Typography>{phoneData.ram}</Typography>
+                    <Box sx={{ mb: 2 }}>
+                      <div>
+                        <Button
+                          variant="contained"
+                          onClick={handleNext}
+                          sx={{ mt: 1, mr: 1 }}
+                        >
+                          prochain
+                        </Button>
+                        <Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+                          retour
+                        </Button>
+                      </div>
+                    </Box>
+                  </StepContent>
+                </Step>
+                {/* {Finished step ram} */}
                 {/* {step phone state} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
@@ -537,7 +608,10 @@ export default function Evaluation() {
                         Couleur: <b>{phoneData.color} </b>{" "}
                       </p>
                       <p>
-                        Capacité de stockage: <b>{phoneData.memory}</b>{" "}
+                        Capacité de stockage: <b>{phoneData.memory} Go</b>{" "}
+                      </p>
+                      <p>
+                        RAM: <b>{phoneData.ram} Go</b>{" "}
                       </p>
                       <p>
                         État du téléphone : <b>{phoneData.state} </b>
@@ -576,6 +650,7 @@ export default function Evaluation() {
           </Typography>
         )}
       </Container>
+      <PostPhone phoneData={{ ...phoneData }} />
     </>
   );
 }

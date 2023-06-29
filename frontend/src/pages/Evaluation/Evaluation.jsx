@@ -110,8 +110,8 @@ const state = [
 
 export default function Evaluation() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [registerButton, setRegisterButton] = React.useState(true);
-  const [validatePhone, setValidatePhone] = React.useState(true);
+  const [registerButton, setRegisterButton] = React.useState(false);
+  const [validatePhone, setValidatePhone] = React.useState(false);
 
   const handleToggle = () => {
     setValidatePhone(true);
@@ -123,7 +123,7 @@ export default function Evaluation() {
     color: "",
     memory: "",
     state: "",
-    charger: "",
+    charger: "Oui",
   });
 
   const handlePhoneData = (e) => {
@@ -140,6 +140,12 @@ export default function Evaluation() {
 
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  const handleLastResetButton = () => {
+    setValidatePhone(false);
+    // handleBack();
+    // setValidatePhone(false);
   };
   return (
     <>
@@ -469,11 +475,11 @@ export default function Evaluation() {
                           m: 4,
                         }}
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="oui"
+                        defaultValue="Oui"
                         name="radio-buttons-group"
                       >
                         <FormControlLabel
-                          value="oui"
+                          value="Oui"
                           name="charger"
                           control={<Radio />}
                           label="Oui"
@@ -545,6 +551,7 @@ export default function Evaluation() {
                     <button
                       type="button"
                       className={styles.validateResetButton}
+                      onClick={handleLastResetButton}
                     >
                       Retour
                     </button>

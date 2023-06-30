@@ -123,7 +123,7 @@ export default function Evaluation() {
     api
       .registerPhone(phoneDatapost)
       .then((response) => {
-        console.warn("Phone registration successful:", response);
+        console.info("Phone registration successful:", response);
       })
       .catch((error) => {
         console.error("Phone registration failed:", error);

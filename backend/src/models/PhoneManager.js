@@ -70,8 +70,8 @@ class PhoneManager extends AbstractManager {
   insert(phone) {
     return this.database.query(
       `
-      INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO phone (os_id, brand_id, model_id, color_id, memory_id, storage_id, state_id, category_id, charger, network_id, screen_size_id, user_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
       [
         phone.os_id,
@@ -85,6 +85,7 @@ class PhoneManager extends AbstractManager {
         phone.charger,
         phone.network_id,
         phone.screen_size_id,
+        phone.user_id,
       ]
     );
   }

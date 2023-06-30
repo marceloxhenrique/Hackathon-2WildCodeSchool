@@ -34,7 +34,7 @@ export default function Evaluation() {
     charger: "Oui",
   });
 
-  const [brandAvailable, setBrandavailable] = React.useState({});
+  const [brandAvailable, setBrandAvailable] = React.useState({});
   const [modelsAvailable, setModelsAvailable] = React.useState({});
   const [colorsAvailable, setColorsAvailable] = React.useState({});
   const [storageAvailable, setStorageAvailable] = React.useState({});
@@ -43,8 +43,8 @@ export default function Evaluation() {
 
   React.useEffect(() => {
     const getBrands = async () => {
-      const res = await api.brandAvailable();
-      setBrandavailable(res);
+      const res = await api.brandsAvailable();
+      setBrandAvailable(res);
     };
 
     const getModels = async () => {
@@ -78,7 +78,7 @@ export default function Evaluation() {
     getStorage();
     getMemory();
     getState();
-  }, [phoneData]);
+  }, []);
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [registerButton, setRegisterButton] = React.useState(false);
@@ -105,7 +105,33 @@ export default function Evaluation() {
 
   const [price, setPrice] = React.useState();
 
+  const registerPhone = () => {
+    const phoneDatapost = {
+      os_id: phoneData.operatyngSystem_id,
+      brand_id: phoneData.brand_id,
+      model_id: phoneData.model_id,
+      color_id: phoneData.color_id,
+      memory_id: phoneData.ram_id,
+      storage_id: phoneData.memory_id,
+      state_id: phoneData.state_id,
+      category_id: 1,
+      charger: phoneData.charger_id,
+      network_id: 1,
+      screen_size_id: 1,
+      user_id: 1,
+    };
+    api
+      .registerPhone(phoneDatapost)
+      .then((response) => {
+        console.warn("Phone registration successful:", response);
+      })
+      .catch((error) => {
+        console.error("Phone registration failed:", error);
+      });
+  };
+
   const handleCalculatePrice = () => {
+    registerPhone();
     console.warn(phoneData);
 
     let valA = "";
@@ -122,11 +148,11 @@ export default function Evaluation() {
     }
 
     // valeur en fonction de  la mémoire
-    if (phoneData.ram === "4GB") {
+    if (phoneData.memory === "4GB") {
       valM = 30;
-    } else if (phoneData.ram === "6GB") {
+    } else if (phoneData.memory === "6GB") {
       valM = 40;
-    } else if (phoneData.ram === "8GB") {
+    } else if (phoneData.memory === "8GB") {
       valM = 54;
     }
 
@@ -141,32 +167,8 @@ export default function Evaluation() {
     // console.log(valA)
     // Calculating the price
     const calculatedPrice = valA + valM + valS;
+
     setPrice(calculatedPrice);
-  };
-
-  const phoneDatapost = {
-    os_id: phoneData.operatyngSystem_id,
-    brand_id: phoneData.brand_id,
-    model_id: phoneData.model_id,
-    color_id: phoneData.color_id,
-    memory_id: phoneData.ram_id,
-    storage_id: phoneData.memory_id,
-    state_id: phoneData.state_id,
-    category_id: 1,
-    charger: phoneData.charger_id,
-    network_id: 1,
-    screen_size_id: 1,
-  };
-
-  const registerPhone = () => {
-    api
-      .registerPhone(phoneDatapost)
-      .then((response) => {
-        console.warn("Phone registration successful:", response);
-      })
-      .catch((error) => {
-        console.error("Phone registration failed:", error);
-      });
   };
 
   return (
@@ -339,7 +341,7 @@ export default function Evaluation() {
                                 model_id: option.id,
                               });
                             }}
-                            name="brand"
+                            name="model"
                             value={option.model}
                             primary={option.model}
                           />
@@ -463,7 +465,7 @@ export default function Evaluation() {
                 {/* {step ram} */}
                 <Step sx={{ minHeight: 150 }}>
                   <StepLabel>
-                    <Typography variant="h3" color="initial">
+                    <Typography variant="h5" color="initial">
                       RAM
                     </Typography>
                   </StepLabel>
@@ -668,7 +670,7 @@ export default function Evaluation() {
                     </button>
                     <button
                       type="button"
-                      onClick={(handleCalculatePrice, registerPhone)}
+                      onClick={handleCalculatePrice}
                       className={styles.validateResetButton}
                     >
                       Calculer le prix

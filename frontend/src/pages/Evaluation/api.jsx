@@ -8,7 +8,7 @@ const instance = axios.create({
 // eslint-disable-next-line import/prefer-default-export
 export const api = {
   // eslint-disable-next-line consistent-return
-  brandAvailable: async () => {
+  brandsAvailable: async () => {
     try {
       const res = await instance.get("/brands");
       return res.data;
